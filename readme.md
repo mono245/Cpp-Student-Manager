@@ -1,1 +1,1 @@
-# Программа - менеджер для управлением студентами
+# Simple console student manager in c++
