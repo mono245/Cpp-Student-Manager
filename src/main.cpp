@@ -51,6 +51,7 @@ public:
                 }
             } catch(invalid_argument const &ex) {
                 cerr << "Возраст не может быть строкой" << endl;
+                validAge = false;
               }
         } while (!validAge);
 
@@ -76,6 +77,8 @@ public:
                 }
             } catch(invalid_argument const &ex) {
                 cerr << "Средний балл не может быть строкой" << endl;
+                cin.clear();
+                validAvg = false;
               }
         } while (!validAvg);
 
@@ -202,23 +205,23 @@ int main() {
          << "6. Выйти\n\n";
 
     int action;
+    string actionIn;
     StudentManager manager;
 
     do {
-        string name;
-        int age;
-        float avg;
-
+        
         cout << "Выберите операцию (1-6): ";
-        cin >> action;
+        getline(cin, actionIn);
 
-        // очищаем буфер
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        // обработка ошибок при вводе выбора
+        try {
+            action = stoi(actionIn);
+        } catch (invalid_argument const &ex) {
+              cerr << "Недопустимое значение" << endl;
+              continue;
+          }
 
-        if (action < 1 || action > 6) {
-            cout << "Недопустимое значение" <<  endl;
-        }
+        // обработка выбора
         switch (action) {
             case 1:
                 manager.addStudent();
