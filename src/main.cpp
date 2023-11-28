@@ -84,7 +84,7 @@ public:
 
     void addStudent() {
         cout << fixed << setprecision(2);
-        string total, agein, avgin;
+        string total;
         string &ptotal = total;
         bool validAvg = false;
 
